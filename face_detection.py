@@ -12,7 +12,7 @@ class Face_detector():
         faces = self.detector.detectMultiScale(img_gray, scaleFactor= self.scaleFactor, minNeighbors= self.minNeighobrs)
        
         for (x,y,w,h) in faces:
-            cv.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 5)
+            cv.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
     def has_face(self, img):
         img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
