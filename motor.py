@@ -34,7 +34,7 @@ class Motor():
 
         while (self.current_step != target_step):
             self.output_sequence(self.sequence_id)
-            current_step += direction
+            self.current_step += direction
             self.sequence_id = (self.sequence_id + direction) % self.sequence_count
             time.sleep(self.wait_time)
 
