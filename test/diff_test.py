@@ -30,12 +30,12 @@ def normal3(name):
 def canny_sum(img):
     img_edge = cv.Canny(img, 100, 200)
     edge_sum = np.sum(img_edge)
-    return edge_sum
+    return int(edge_sum)
 
 def get_canny_sum_diff(img_0, img_1):
     sum_0 = canny_sum(img_0)
     sum_1 = canny_sum(img_1)
-    return (sum_0 - sum_1)
+    return abs(sum_0 - sum_1)
 
 if __name__ == '__main__':
     if args.mode == 'shot':

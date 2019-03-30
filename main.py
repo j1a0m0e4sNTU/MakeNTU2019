@@ -31,7 +31,7 @@ class Shit_detector():
         self.server_ip = '10.10.3.21'
         self.port = 8080
         
-        self.threshold = 20000000
+        self.threshold = 20000
 
     def lock(self):
         self.motor.rotate(self.angle)
@@ -75,7 +75,7 @@ class Shit_detector():
 
     def detect_shit(self, img_after):
         img_origin = cv.imread('origin.jpg')
-        similarity = get_similarity(img_origin, img_after, normal)
+        similarity = get_canny_sum_diff(img_origin, img_after)
         if similarity > self.threshold:
             file_name = datetime.now().strftime("%Y-%m-%d %H:%M:%S").replace(' ', '_')
             cv.imwrite('face.jpg', self.face)
