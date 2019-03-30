@@ -107,18 +107,26 @@ class Shit_detector():
         self.reset()
         while True:
             self.detect_face()
+            print('finish detect face')
             self.unlock()
+            print('unlock')
             time.sleep(3)
             self.lock()
+            print('lock')
             self.red_led.turn_on()
+            print('wait for flush')
             self.wait_for_flush()
             self.unlock()
+            print('unlock')
             time.sleep(3)
 
             self.pi_cam.capture('after.jpg')
             img_after = cv.imread('after.jpg')
+            print('get after image')
             self.lock()
+            print('lock')
             self.detect_shit(img_after)
+            print('finish detect shit')
             self.red_led.turn_off()
 
     def __del__(self):
