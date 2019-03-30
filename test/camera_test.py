@@ -27,9 +27,14 @@ def test2():
     cv.destroyAllWindows()
 
 def test3():
+    from picamera import PiCamera
     cam = cv.VideoCapture(0)
     _, img = cam.read()
     cv.imwrite('web.jpg', img)
+    picam = PiCamera()
+    picam.capture('pi.jpg')
+
+
 
 if __name__ == '__main__':
     print('test')
