@@ -57,7 +57,7 @@ class Client():
         self.client_socket.sendall(struct.pack(">L", size) + data)
 
 def test_server():
-    ip = '127.0.0.1'
+    ip = '10.10.2.99'
     server = Server(ip)
     server.build_socket()
     img = server.receive_image()
@@ -66,7 +66,7 @@ def test_server():
 
 
 def test_client():
-    ip = '127.0.0.1'
+    ip = '10.10.2.99'
     client = Client(ip)
     img = cv.imread('test/lena.jpg')
     client.build_socket()
