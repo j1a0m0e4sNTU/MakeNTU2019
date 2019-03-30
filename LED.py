@@ -21,6 +21,9 @@ class LED():
             self.turn_off()
             time.sleep(interval)
 
+    def __del__(self):
+        GPIO.output(self.pin, GPIO.LOW)
+
 if __name__ == '__main__':
     print('- LED -')
     GPIO.setmode(GPIO.BCM)

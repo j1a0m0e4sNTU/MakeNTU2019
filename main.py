@@ -83,9 +83,9 @@ class Shit_detector():
             upload('.','face.jpg', file_name +'_face.jpg')
             cv.imwrite('shit.jpg', img_after)
             upload('.','shit.jpg', file_name +'_shit.jpg')
-
-    def run(self):
-        pass
+            self.yellow_led.turn_on()
+        else:
+            self.yellow_led.turn_off()
 
     def test(self):
         print('start detect')
@@ -102,8 +102,30 @@ class Shit_detector():
         img = cv.imread('after.jpg')
         self.detect_shit(img)
         print('finish detect shit')
+    
+    def run(self):
+        self.reset()
+        while True:
+            self.detect_face()
+            self.unlock()
+            time.sleep(3)
+            self.lock()
+            self.red_led.turn_on()
+            self.wait_for_flush()
+            self.unlock()
+            time.sleep(3)
+
+            self.pi_cam.capture('after.jpg')
+            img_after = cv.imread('after.jpg')
+            self.lock()
+            self.detect_shit(img_after)
+            self.red_led.turn_off()
+
+    def __del__(self):
+        self.web_cam.release()
+
 
 if __name__ == '__main__':
     print('- MAIN -')
     detector = Shit_detector()
-    detector.test2()
+    detector.main()
