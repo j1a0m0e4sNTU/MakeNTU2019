@@ -85,6 +85,7 @@ class Shit_detector():
             upload('.','shit.jpg', file_name +'_shit.jpg')
             self.yellow_led.turn_on()
         else:
+            print('Difference: {} < threshold: {}'.format(diff, self.threshold))
             self.yellow_led.turn_off()
 
     def test(self):
