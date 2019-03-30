@@ -128,4 +128,4 @@ class Shit_detector():
 if __name__ == '__main__':
     print('- MAIN -')
     detector = Shit_detector()
-    detector.main()
+    detector.run()
