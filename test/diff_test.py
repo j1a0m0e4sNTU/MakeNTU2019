@@ -30,12 +30,16 @@ def normal3(name):
 if __name__ == '__main__':
     if args.mode == 'shot':
         cam = PiCamera()
+        cam.exposure_mode = 'off'
+        cam.framerate =1
+        cam.shutter_speed = 6000000
+        cam.iso = 1600
         name = args.name + '.jpg'
         cam.capture(name)
         print('saved', name)
     else:
-        img_0 = normal3('0.jpg')
-        img_1 = normal3('1.jpg')
+        img_0 = normal('0.jpg')
+        img_1 = normal('1.jpg')
 
         dis = np.absolute(img_0 - img_1)
         diff = np.sum(dis)
