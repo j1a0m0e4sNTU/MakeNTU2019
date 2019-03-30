@@ -7,6 +7,7 @@ from LED import LED
 from button import Button
 import cv2 as cv
 import numpy as np
+import time
 
 class Shit_detector():
     def __init__(self):
@@ -47,6 +48,8 @@ class Shit_detector():
             _, img = self.web_cam.read()
             if detector.has_face(img):
                 self.green_led.turn_on()
+                time.sleep(2)
+                detector.mark_face(img)
                 if self.open:
                     self.face = img
                     break
