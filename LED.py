@@ -27,4 +27,4 @@ if __name__ == '__main__':
     GPIO.setwarnings(False)
     pin = int(sys.argv[1])
     led = LED(pin)
-    led.shine(10, 0.5)
+    led.shine(2, 0.5)
