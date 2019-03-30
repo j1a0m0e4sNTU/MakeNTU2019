@@ -37,7 +37,7 @@ class Shit_detector():
         self.cur_state = 'IDLE'
 
     def detect_face(self):
-        def call_back():
+        def call_back(channel):
             self.open = True
 
         button = Button(4, call_back)
