@@ -53,6 +53,8 @@ class Shit_detector():
             else:
                 self.green_led.turn_off()
 
+        self.green_led.turn_off()
+
 
     def run(self):
         pass
