@@ -25,6 +25,7 @@ if __name__ == '__main__':
         img_0 = normal('0.jpg')
         img_1 = normal('1.jpg')
 
-        diff = np.sum(img_0 - img_1)
+        dis = np.absolute(img_0 - img_1)
+        diff = np.sum(dis)
         s = np.sum(diff)
         print('diff:', s)
