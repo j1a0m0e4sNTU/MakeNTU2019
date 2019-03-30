@@ -21,6 +21,7 @@ class Motor():
         self.wait_time = 0.001
         
         GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(False)
         for pin in self.stepper_pins:
             GPIO.setup(pin, GPIO.OUT)
             GPIO.output(pin, GPIO.LOW)
@@ -45,4 +46,8 @@ class Motor():
 if __name__ == '__main__':
     print('- motor -')
     motor = Motor()
-    motor.rotate(1/4)
+    while True:
+        s = input('rotate round:')
+        if s == 'q':break
+        r = float(s)
+        motor.rotate(r)
