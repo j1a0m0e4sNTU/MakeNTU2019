@@ -26,6 +26,11 @@ def test2():
     cam.release()
     cv.destroyAllWindows()
 
+def test3():
+    cam = cv.VideoCapture(0)
+    _, img = cam.read()
+    cv.imwrite('web.jpg', img)
+
 if __name__ == '__main__':
     print('test')
-    test2()
+    test3()
