@@ -10,7 +10,7 @@ from upload import upload
 import cv2 as cv
 import numpy as np
 import time
-import datetime
+from datetime import datetime
 
 
 class Shit_detector():
