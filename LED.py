@@ -14,7 +14,7 @@ class LED():
     def turn_off(self):
         GPIO.output(self.pin, GPIO.LOW)
 
-    def shine(self, count, interval):
+    def shine(self, count= 2, interval= 0.5):
         for _ in range(count):
             self.turn_on()
             time.sleep(interval)
