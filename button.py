@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import sys
-
+import time
 
 class Button():
     def __init__(self, pin, call_back):
@@ -14,4 +14,6 @@ if __name__ == '__main__':
     def f():
         print('push')
     button = Button(pin, f)
-
+    while True:
+        print('wait ...')
+        time.sleep(100)
