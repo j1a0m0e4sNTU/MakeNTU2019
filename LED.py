@@ -24,6 +24,7 @@ class LED():
 if __name__ == '__main__':
     print('- LED -')
     GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
     pin = int(sys.argv[1])
     led = LED(pin)
     led.shine(10, 0.5)
