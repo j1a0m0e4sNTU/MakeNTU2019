@@ -1,11 +1,13 @@
 import socket 
 from button import Button
+import RPi.GPIO as GPIO
 
 class Flusher():
     def __init__(self, server_ip= '10.10.3.21', port= 8080):
-        self.socket = socket.socket(socket.AF_INET)
-        self.socket.bind((server_ip, port))
-        self.socket.listen(5)
+        GPIO.setmode(GPIO.BCM)
+        self.server_socket = socket.socket(socket.AF_INET)
+        self.server_socket.bind((server_ip, port))
+        self.server_socket.listen(5)
         self.flush = False
         def call_back(channel):
             self.flush = True
@@ -20,6 +22,9 @@ class Flusher():
             
             conn.send(b'1')
             conn.close()
+            self.flush = False
 
-    def __del__(self):
-        self.socket.close()
+if __name__ == '__main__':
+    flusher = Flusher()
+    print('Run ...')
+    flusher.run()
