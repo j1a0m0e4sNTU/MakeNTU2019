@@ -56,9 +56,10 @@ class Shit_detector():
         while True:
             _, img = self.web_cam.read()
             if detector.has_face(img):
+                detector.mark_face(img)
                 self.green_led.turn_on()
                 time.sleep(2)
-                detector.mark_face(img)
+                
                 if self.open:
                     self.face = img
                     break
@@ -66,6 +67,7 @@ class Shit_detector():
                 self.green_led.turn_off()
 
         self.green_led.turn_off()
+        self.open = False
 
     def wait_for_flush(self):
         client_socket = socket.socket(socket.AF_INET)
