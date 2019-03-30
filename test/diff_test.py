@@ -34,8 +34,8 @@ if __name__ == '__main__':
         cam.capture(name)
         print('saved', name)
     else:
-        img_0 = normal3('0.jpg')
-        img_1 = normal3('1.jpg')
+        img_0 = normal('0.jpg')
+        img_1 = normal('1.jpg')
 
         dis = np.absolute(img_0 - img_1)
         diff = np.sum(dis)
