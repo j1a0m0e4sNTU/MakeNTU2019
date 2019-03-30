@@ -75,8 +75,9 @@ class Shit_detector():
 
     def detect_shit(self, img_after):
         img_origin = cv.imread('origin.jpg')
-        similarity = get_canny_sum_diff(img_origin, img_after)
-        if similarity > self.threshold:
+        diff = get_canny_sum_diff(img_origin, img_after)
+        if diff > self.threshold:
+            print('Difference: {} > threshold: {}'.format(diff, self.threshold))
             file_name = datetime.now().strftime("%Y-%m-%d %H:%M:%S").replace(' ', '_')
             cv.imwrite('face.jpg', self.face)
             upload('.','face.jpg', file_name +'_face.jpg')
