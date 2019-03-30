@@ -23,6 +23,7 @@ class Face_detector():
         else:
             return False
 
+
 if __name__ == '__main__':
     cam = cv.VideoCapture(0)
     face_detector = Face_detector()

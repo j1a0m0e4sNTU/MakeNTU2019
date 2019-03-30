@@ -41,6 +41,11 @@ class Motor():
         for i, pin in enumerate(self.stepper_pins):
             GPIO.output(pin, self.sequence[sequence_id][i])
 
+    def __del__(self):
+        self.rotate(0)
+        for pin in self.stepper_pins:
+            GPIO.output(pin, GPIO.LOW)
+
 if __name__ == '__main__':
     print('- motor -')
     GPIO.setmode(GPIO.BCM)

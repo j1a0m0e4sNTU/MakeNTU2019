@@ -8,6 +8,9 @@ class Button():
         GPIO.setup(self.pin, GPIO.IN, pull_up_down= GPIO.PUD_UP)
         GPIO.add_event_detect(self.pin, GPIO.RISING, callback= call_back, bouncetime= 300)
 
+    def __del__(self):
+        GPIO.remove_event_detect(self.pin)
+
 if __name__ == '__main__':
     print('- Button -')
     GPIO.setmode(GPIO.BCM)
