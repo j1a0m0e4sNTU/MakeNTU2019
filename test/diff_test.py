@@ -30,10 +30,10 @@ def normal3(name):
 if __name__ == '__main__':
     if args.mode == 'shot':
         cam = PiCamera()
-        cam.exposure_mode = 'off'
-        cam.framerate =1
-        cam.shutter_speed = 6000000
-        cam.iso = 1600
+        #cam.exposure_mode = 'off'
+        #cam.framerate =1
+        #cam.shutter_speed = 6000000
+        #cam.iso = 1600
         name = args.name + '.jpg'
         cam.capture(name)
         print('saved', name)
