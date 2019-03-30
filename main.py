@@ -5,9 +5,13 @@ from motor import Motor
 from face_detection import Face_detector
 from LED import LED
 from button import Button
+from normal import *
+from upload import upload
 import cv2 as cv
 import numpy as np
 import time
+import datetime
+
 
 class Shit_detector():
     def __init__(self):
@@ -28,6 +32,8 @@ class Shit_detector():
 
         self.server_ip = '10.10.3.21'
         self.port = 8080
+        
+        self.threshold = 20000000
 
     def lock(self):
         self.motor.rotate(self.angle)
@@ -68,6 +74,15 @@ class Shit_detector():
         client_socket.close()
         print('flushed !')
 
+    def detect_shit(self, img_after):
+        img_origin = cv.imread('origin.jpg')
+        similarity = get_similarity(img_origin, img_after, normal)
+        if similarity > self.threshold:
+            file_name = datetime.now().strftime("%Y-%m-%d %H:%M:%S").replace(' ', '_')
+            cv.imwrite('face.jpg', self.face)
+            upload('.','face.jpg', file_name +'_face.jpg')
+            cv.imwrite('shit.jpg', img_after)
+            upload('.','shit.jpg', file_name +'_shit.jpg')
 
     def run(self):
         pass
@@ -79,7 +94,13 @@ class Shit_detector():
         print('finish')
     
     def test2(self):
-        self.wait_for_flush()
+        self.reset()
+        print('finish saving origin.jpg')
+        self.detect_face()
+        print('finish detect face')
+        _, img = self.pi_cam.read()
+        self.detect_shit(img)
+        print('finish detect shit')
 
 if __name__ == '__main__':
     print('- MAIN -')
