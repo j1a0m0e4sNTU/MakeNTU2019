@@ -28,7 +28,7 @@ def normal3(name):
     return dst
 
 def canny_sum(img):
-    img_edge = cv.Canny(img, 100, 200)
+    img_edge = cv.Canny(img, 300, 400)
     edge_sum = np.sum(img_edge)
     return int(edge_sum)
 
