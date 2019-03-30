@@ -10,10 +10,11 @@ class Button():
 
 if __name__ == '__main__':
     print('- Button -')
+    GPIO.setmode(GPIO.BCM)
     pin = int(sys.argv[1])
-    def f():
+    def f(channel):
         print('push')
     button = Button(pin, f)
     while True:
         print('wait ...')
-        time.sleep(100)
+        time.sleep(0.5)
