@@ -1,9 +1,6 @@
 
-
-
 import os, uuid, sys
 from azure.storage.blob import BlockBlobService, PublicAccess
-
 
 def upload(path,filename,blobname):
     try:
@@ -21,12 +18,8 @@ def upload(path,filename,blobname):
         local_path=os.path.expanduser(path)
         local_file_name =filename
         full_path_to_file =os.path.join(local_path, local_file_name)
-
-
-        print("\nUploading to Blob storage as blob:" + local_file_name)
-
-        # Upload the created file, use local_file_name for the blob name
-        block_blob_service.create_blob_from_path(container_name, blobname, full_path_to_file)
+        print("\nDownloading to local storage:" + full_path_to_file)
+        block_blob_service.get_blob_to_path(container_name, local_file_name, full_path_to_file)
 
     except Exception as e:
         print(e)
@@ -34,7 +27,7 @@ def upload(path,filename,blobname):
 
 # Main method.
 if __name__ == '__main__':
-    upload('~/Desktop/wutj','myp.jpeg','haha.jpeg')
+    upload('~/Desktop','myp.jpeg','haha.jpeg')
 
 
 
