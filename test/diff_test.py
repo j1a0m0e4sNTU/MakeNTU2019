@@ -1,12 +1,12 @@
 import cv2 as cv
 import numpy as np
-# from picamera import PiCamera
+from picamera import PiCamera
 import argparse
 
-# parser = argparse.ArgumentParser()
-# parser.add_argument('mode', choices=['shot', 'diff'])
-# parser.add_argument('-name', choices=['0','1'])
-# args = parser.parse_args()
+parser = argparse.ArgumentParser()
+parser.add_argument('mode', choices=['shot', 'diff'])
+parser.add_argument('-name', choices=['0','1'])
+args = parser.parse_args()
 
 def normal(name):
     img = cv.imread(name)
