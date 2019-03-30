@@ -98,7 +98,8 @@ class Shit_detector():
         print('finish saving origin.jpg')
         self.detect_face()
         print('finish detect face')
-        _, img = self.pi_cam.read()
+        self.pi_cam.capture('after.jpg')
+        img = cv.imread('after.jpg')
         self.detect_shit(img)
         print('finish detect shit')
 
