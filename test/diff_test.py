@@ -21,6 +21,12 @@ def normal2(name):
         img[:, :, i] = img[:, :, i] - np.mean(img[:, :, i])
     return img
 
+def normal3(name):
+    img = cv.imread(name)
+    gray_lap = cv.Laplacian(img, cv.CV_16S, ksize= 3)
+    dst = cv.convertScaleAbs(gray_lap)
+    return dst
+
 if __name__ == '__main__':
     if args.mode == 'shot':
         cam = PiCamera()
@@ -28,8 +34,8 @@ if __name__ == '__main__':
         cam.capture(name)
         print('saved', name)
     else:
-        img_0 = normal2('0.jpg')
-        img_1 = normal2('1.jpg')
+        img_0 = normal3('0.jpg')
+        img_1 = normal3('1.jpg')
 
         dis = np.absolute(img_0 - img_1)
         diff = np.sum(dis)
