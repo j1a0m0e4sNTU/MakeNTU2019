@@ -26,6 +26,9 @@ class Shit_detector():
         self.open = False
         self.face = None
 
+        self.server_ip = '10.10.3.21'
+        self.port = 8080
+
     def lock(self):
         self.motor.rotate(self.angle)
 
@@ -58,6 +61,13 @@ class Shit_detector():
 
         self.green_led.turn_off()
 
+    def wait_for_flush(self):
+        client_socket = socket.socket(socket.AF_INET)
+        client_socket.connect((self.server_ip, self.port))
+        client_socket.recv(1024)
+        client_socket.close()
+        print('flushed !')
+
 
     def run(self):
         pass
@@ -67,9 +77,11 @@ class Shit_detector():
         self.detect_face()
         cv.imwrite('face.jpg', self.face) 
         print('finish')
-        
+    
+    def test2(self):
+        self.wait_for_flush()
 
 if __name__ == '__main__':
     print('- MAIN -')
     detector = Shit_detector()
-    detector.test()
+    detector.test2()
