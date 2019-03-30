@@ -15,6 +15,12 @@ def normal(name):
     img_n = img_s - mean
     return img_n 
 
+def normal2(name):
+    img = cv.imread(name)
+    for i in range(3):
+        img[:, :, i] = img[:, :, i] - np.mean(img[:, :, i])
+    return img
+
 if __name__ == '__main__':
     if args.mode == 'shot':
         cam = PiCamera()
@@ -22,10 +28,10 @@ if __name__ == '__main__':
         cam.capture(name)
         print('saved', name)
     else:
-        img_0 = normal('0.jpg')
-        img_1 = normal('1.jpg')
+        img_0 = normal2('0.jpg')
+        img_1 = normal2('1.jpg')
 
         dis = np.absolute(img_0 - img_1)
         diff = np.sum(dis)
-        s = np.sum(diff)
+        s = int(diff)
         print('diff:', s)
