@@ -17,8 +17,6 @@ class Shit_detector():
     def __init__(self):
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
-        self.state_list = ['IDLE']
-        self.cur_state = self.state_list[0]
         self.green_led = LED(5)
         self.yellow_led = LED(13)
         self.red_led = LED(21)
@@ -44,7 +42,6 @@ class Shit_detector():
     def reset(self):
         self.pi_cam.capture('origin.jpg')
         self.lock()
-        self.cur_state = 'IDLE'
 
     def detect_face(self):
         def call_back(channel):

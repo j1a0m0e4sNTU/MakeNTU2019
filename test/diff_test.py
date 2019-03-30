@@ -27,6 +27,16 @@ def normal3(name):
     dst = cv.convertScaleAbs(gray_lap)
     return dst
 
+def canny_sum(img):
+    img_edge = cv.Canny(img, 100, 200)
+    edge_sum = np.sum(img_edge)
+    return edge_sum
+
+def get_canny_sum_diff(img_0, img_1):
+    sum_0 = canny_sum(img_0)
+    sum_1 = canny_sum(img_1)
+    return (sum_0 - sum_1)
+
 if __name__ == '__main__':
     if args.mode == 'shot':
         cam = PiCamera()
@@ -38,10 +48,14 @@ if __name__ == '__main__':
         cam.capture(name)
         print('saved', name)
     else:
-        img_0 = normal('0.jpg')
-        img_1 = normal('1.jpg')
+        # img_0 = normal('0.jpg')
+        # img_1 = normal('1.jpg')
 
-        dis = np.absolute(img_0 - img_1)
-        diff = np.sum(dis)
-        s = int(diff)
-        print('diff:', s)
+        # dis = np.absolute(img_0 - img_1)
+        # diff = np.sum(dis)
+        # s = int(diff)
+        # print('diff:', s)
+        img_0 = cv.imread('0.jpg')
+        img_1 = cv.imread('1.jpg')
+        diff = get_canny_sum_diff(img_0, img_1)
+        print('Diff:', diff)
