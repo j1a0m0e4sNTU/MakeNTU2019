@@ -32,14 +32,16 @@ class Shit_detector():
         self.port = 8080
         
         self.threshold = 20000
+        self.interval = 10
 
     def lock(self):
-        self.motor.rotate(self.angle)
+        self.motor.rotate(0)
 
     def unlock(self):
-        self.motor.rotate(-1 * self.angle)
+        self.motor.rotate(self.angle)
 
     def reset(self):
+        self.unlock()
         self.pi_cam.capture('origin.jpg')
         self.lock()
 
@@ -55,7 +57,7 @@ class Shit_detector():
             if detector.has_face(img):
                 detector.mark_face(img)
                 self.green_led.turn_on()
-                time.sleep(2)
+                time.sleep(self.interval)
                 
                 if self.open:
                     self.face = img
@@ -111,7 +113,7 @@ class Shit_detector():
             self.detect_face()
             print('unlock')
             self.unlock()
-            time.sleep(3)
+            time.sleep(self.interval)
             print('lock')
             self.lock()
             
@@ -120,7 +122,7 @@ class Shit_detector():
             self.wait_for_flush()
             print('unlock')
             self.unlock()
-            time.sleep(3)
+            time.sleep(self.interval)
             print('get after image')
             self.pi_cam.capture('after.jpg')
             img_after = cv.imread('after.jpg')
