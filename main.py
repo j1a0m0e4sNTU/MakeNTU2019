@@ -57,7 +57,7 @@ class Shit_detector():
             if detector.has_face(img):
                 detector.mark_face(img)
                 self.green_led.turn_on()
-                time.sleep(self.interval)
+                time.sleep(self.interval/2)
                 
                 if self.open:
                     self.face = img
