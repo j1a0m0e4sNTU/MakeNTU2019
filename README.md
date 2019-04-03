@@ -36,17 +36,19 @@ There's another raspberryPi, which represent the trigger of the flusher, once th
 it would send signal to the RaspberryPi on the door to make it unlock.
 
 ## Results
-![](img/front.JPG)
+
 ### front view 
+![](img/front.JPG)
 
-![](img/back.JPG)
 ### Back view
+![](img/back.JPG)
 
-![](img/face.png)
 ### Suspect's face uploaded
+![](img/face.png)
 
-![](img/shit.png)
 ### The toilet's scene after non-proper usage
+![](img/shit.png)
+
 
 ## Challenge 
 
